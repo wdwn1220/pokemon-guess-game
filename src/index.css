@@ -60,9 +60,13 @@ header p {
 }
 
 .pokemon-pool {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1.5rem;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
   margin: 2rem 0;
 }
 
@@ -74,6 +78,8 @@ header p {
   cursor: pointer;
   transition: all 0.2s ease;
   min-height: 140px;
+  min-width: 150px;
+  flex: 0 0 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -138,6 +144,7 @@ button:disabled {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 }
 
 .battle-header {
@@ -155,7 +162,8 @@ button:disabled {
 .battle-arena {
   background: linear-gradient(to bottom, #cfd8dc, #eceff1);
   border-radius: 1rem;
-  height: 300px;
+  height: 320px;
+  min-height: 320px;
   position: relative;
   overflow: hidden;
   box-shadow: inset 0 0 50px rgba(0,0,0,0.1), 0 10px 25px rgba(0,0,0,0.5);
@@ -173,6 +181,7 @@ button:disabled {
   background: rgba(0,0,0,0.1);
   border-radius: 50%;
   transform: scaleY(0.7);
+  z-index: 0;
 }
 
 .battle-arena::after {
@@ -185,6 +194,7 @@ button:disabled {
   background: rgba(0,0,0,0.1);
   border-radius: 50%;
   transform: scaleY(0.7);
+  z-index: 0;
 }
 
 .enemy-side, .player-side {
@@ -192,16 +202,17 @@ button:disabled {
   display: flex;
   align-items: center;
   gap: 1rem;
+  z-index: 1;
 }
 
 .enemy-side {
-  top: 20%;
+  top: 14%;
   right: 10%;
   flex-direction: row-reverse;
 }
 
 .player-side {
-  bottom: 0%;
+  bottom: 8%;
   left: 10%;
 }
 
@@ -213,6 +224,7 @@ button:disabled {
   min-width: 150px;
   box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
   color: #333;
+  z-index: 3;
 }
 
 .pokemon-info {
@@ -250,6 +262,11 @@ button:disabled {
   image-rendering: auto;
   transform: scale(1.5);
   transition: opacity 0.5s;
+}
+
+.pokemon-sprite {
+  position: relative;
+  z-index: 2;
 }
 
 .action-faint img {
@@ -302,6 +319,7 @@ button:disabled {
   border: 1px solid var(--glass-border);
   border-radius: 1rem;
   padding: 1rem;
+  min-height: 260px;
 }
 
 .battle-log {
@@ -330,11 +348,12 @@ button:disabled {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
   padding: 1rem;
+  min-height: 200px;
 }
 
 .moves-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
   gap: 0.5rem;
   width: 100%;
 }
@@ -353,6 +372,7 @@ button:disabled {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: stretch;
 }
 
 .switches-grid h4, .moves-grid h4 {
@@ -366,7 +386,8 @@ button:disabled {
   background: #3f51b5;
   border: 1px solid #5c6bc0;
   font-size: 0.9rem;
-  padding: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  white-space: nowrap;
 }
 
 .btn-move:hover {
@@ -650,10 +671,9 @@ button:disabled {
 
 /* Detailed Team Selection Styles */
 .pokemon-card.expanded {
-  grid-column: span 1;
-  width: 100%;
-  max-width: 400px;
-  grid-row: span 2;
+  width: 320px;
+  max-width: 320px;
+  flex: 0 0 320px;
   height: auto;
   z-index: 10;
 }
@@ -756,4 +776,3 @@ button:disabled {
   background: linear-gradient(135deg, var(--primary), #6366f1);
   box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.5);
 }
-

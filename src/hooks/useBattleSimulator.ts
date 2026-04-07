@@ -144,7 +144,7 @@ export function useBattleSimulator(playerTeam: PokemonSet[], mysteryPokemon: Pok
           }
 
           // simple damage/heal tracker for enemy
-          if ((type === '-damage' || type === '-heal' || type === 'switch') && parts[2].startsWith('p2a:')) {
+          if ((type === '-damage' || type === '-heal' || type === 'switch') && parts[2].startsWith('p2')) {
              const condition = type === 'switch' ? parts[4] : parts[3];
              if (condition) {
                 const hp = condition.startsWith('0 fnt') ? 0 : parseInt(condition.split('/')[0]) || 0;
@@ -173,7 +173,7 @@ export function useBattleSimulator(playerTeam: PokemonSet[], mysteryPokemon: Pok
 
             // Handle CSS animation states with specific delays
             if (type === 'move') {
-              const isP1 = parts[2].startsWith('p1a:');
+              const isP1 = parts[2].startsWith('p1');
               if (isP1) {
                 updateState({ playerActive: { ...stateRef.current.playerActive!, action: 'attack' } });
               } else {
@@ -183,7 +183,7 @@ export function useBattleSimulator(playerTeam: PokemonSet[], mysteryPokemon: Pok
             }
 
             if (type === '-damage') {
-              const targetP1 = parts[2].startsWith('p1a:');
+              const targetP1 = parts[2].startsWith('p1');
               if (targetP1) {
                 updateState({ playerActive: { ...stateRef.current.playerActive!, action: 'hit' } });
               } else {
@@ -193,7 +193,7 @@ export function useBattleSimulator(playerTeam: PokemonSet[], mysteryPokemon: Pok
             }
 
             if (type === 'faint') {
-              const targetP1 = parts[2].startsWith('p1a:');
+              const targetP1 = parts[2].startsWith('p1');
               if (targetP1) {
                 updateState({ playerActive: { ...stateRef.current.playerActive!, action: 'faint' } });
               } else {
